@@ -243,5 +243,10 @@ class WhisperBox:
             output_file = output_dir / f"{stem}.txt"
             output_file.write_text(result.text, encoding="utf-8")
 
+        elif format == "html":
+            from whisperbox.templates import generate_html
+            output_file = output_dir / f"{stem}.html"
+            output_file.write_text(generate_html(result), encoding="utf-8")
+
         else:
             raise ValueError(f"Unknown format: {format}")
