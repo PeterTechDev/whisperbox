@@ -27,27 +27,32 @@ def transcribe(
     ),
     output: Optional[Path] = typer.Option(
         None,
-        "--output", "-o",
+        "--output",
+        "-o",
         help="Output directory (default: ./transcripts or next to file)",
     ),
     language: Optional[str] = typer.Option(
         None,
-        "--language", "-l",
+        "--language",
+        "-l",
         help="Language code (e.g., 'pt', 'en'). Auto-detect if not specified.",
     ),
     model: ModelSize = typer.Option(
         "medium",
-        "--model", "-m",
+        "--model",
+        "-m",
         help="Model size: tiny, base, small, medium, large-v3",
     ),
     format: str = typer.Option(
         "markdown",
-        "--format", "-f",
+        "--format",
+        "-f",
         help="Output format: markdown, json, srt, txt",
     ),
     recursive: bool = typer.Option(
         False,
-        "--recursive", "-r",
+        "--recursive",
+        "-r",
         help="Search subdirectories when processing a folder",
     ),
 ):
@@ -175,13 +180,15 @@ def main(
     ctx: typer.Context,
     version: bool = typer.Option(
         False,
-        "--version", "-v",
+        "--version",
+        "-v",
         help="Show version and exit",
     ),
 ):
     """🎧 Whisperbox - Local video transcription powered by Whisper AI."""
     if version:
         from whisperbox import __version__
+
         console.print(f"whisperbox {__version__}")
         raise typer.Exit()
 

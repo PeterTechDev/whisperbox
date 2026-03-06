@@ -51,6 +51,7 @@ class WhisperBox:
 
             if device == "auto":
                 import torch
+
                 device = "cuda" if torch.cuda.is_available() else "cpu"
 
             if compute_type == "auto":
@@ -120,20 +121,24 @@ class WhisperBox:
                 task = progress.add_task("Processing...", total=info.duration)
 
                 for segment in segments_gen:
-                    segments.append(Segment(
-                        start=segment.start,
-                        end=segment.end,
-                        text=segment.text.strip(),
-                    ))
+                    segments.append(
+                        Segment(
+                            start=segment.start,
+                            end=segment.end,
+                            text=segment.text.strip(),
+                        )
+                    )
                     full_text_parts.append(segment.text.strip())
                     progress.update(task, completed=segment.end)
         else:
             for segment in segments_gen:
-                segments.append(Segment(
-                    start=segment.start,
-                    end=segment.end,
-                    text=segment.text.strip(),
-                ))
+                segments.append(
+                    Segment(
+                        start=segment.start,
+                        end=segment.end,
+                        text=segment.text.strip(),
+                    )
+                )
                 full_text_parts.append(segment.text.strip())
 
         result = TranscriptionResult(
@@ -179,10 +184,7 @@ class WhisperBox:
 
         # Find all supported files
         pattern = "**/*" if recursive else "*"
-        files = [
-            f for f in input_path.glob(pattern)
-            if f.is_file() and f.suffix.lower() in SUPPORTED_EXTENSIONS
-        ]
+        files = [f for f in input_path.glob(pattern) if f.is_file() and f.suffix.lower() in SUPPORTED_EXTENSIONS]
 
         if not files:
             console.print("[yellow]No supported files found.[/yellow]")
@@ -244,6 +246,7 @@ class WhisperBox:
 
         elif format == "html":
             from whisperbox.templates import generate_html
+
             output_file = output_dir / f"{stem}.html"
             output_file.write_text(generate_html(result), encoding="utf-8")
 

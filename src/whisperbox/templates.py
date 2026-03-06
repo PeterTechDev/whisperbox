@@ -1,6 +1,6 @@
 """HTML templates for Whisperbox output."""
 
-HTML_TEMPLATE = '''<!DOCTYPE html>
+HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -137,7 +137,7 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
     </script>
 </body>
 </html>
-'''
+"""
 
 
 def format_duration(seconds: float) -> str:
@@ -152,11 +152,11 @@ def format_duration(seconds: float) -> str:
 def segments_to_paragraphs(segments: list, min_pause: float = 1.5) -> list[str]:
     """
     Group segments into paragraphs based on pauses.
-    
+
     Args:
         segments: List of Segment objects
         min_pause: Minimum pause (seconds) to start new paragraph
-    
+
     Returns:
         List of paragraph strings
     """
@@ -167,7 +167,7 @@ def segments_to_paragraphs(segments: list, min_pause: float = 1.5) -> list[str]:
     current_paragraph = [segments[0].text]
 
     for i in range(1, len(segments)):
-        prev_end = segments[i-1].end
+        prev_end = segments[i - 1].end
         curr_start = segments[i].start
         pause = curr_start - prev_end
 
