@@ -51,9 +51,12 @@ Issues = "https://github.com/PeterTechDev/whisperbox/issues"
 where = ["src"]
 
 [tool.black]
-line-length = 100
+line-length = 120
 target-version = ["py310"]
 
 [tool.ruff]
-line-length = 100
+line-length = 120
+
+[tool.ruff.lint]
 select = ["E", "F", "I", "N", "W"]
+per-file-ignores = {"src/whisperbox/templates.py" = ["W293", "E501"]}

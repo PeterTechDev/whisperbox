@@ -8,7 +8,7 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from whisperbox.core import WhisperBox, ModelSize, SUPPORTED_EXTENSIONS
+from whisperbox.core import SUPPORTED_EXTENSIONS, ModelSize, WhisperBox
 
 app = typer.Typer(
     name="whisperbox",

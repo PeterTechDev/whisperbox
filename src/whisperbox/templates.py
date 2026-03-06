@@ -162,42 +162,41 @@ def segments_to_paragraphs(segments: list, min_pause: float = 1.5) -> list[str]:
     """
     if not segments:
         return []
-    
+
     paragraphs = []
     current_paragraph = [segments[0].text]
-    
+
     for i in range(1, len(segments)):
         prev_end = segments[i-1].end
         curr_start = segments[i].start
         pause = curr_start - prev_end
-        
+
         if pause >= min_pause:
             # New paragraph
             paragraphs.append(" ".join(current_paragraph))
             current_paragraph = [segments[i].text]
         else:
             current_paragraph.append(segments[i].text)
-    
+
     # Don't forget last paragraph
     if current_paragraph:
         paragraphs.append(" ".join(current_paragraph))
-    
+
     return paragraphs
 
 
 def generate_html(result) -> str:
     """Generate HTML from TranscriptionResult."""
-    from whisperbox.models import TranscriptionResult
-    
+
     # Group into paragraphs
     paragraphs = segments_to_paragraphs(result.segments)
-    
+
     # Build HTML content
     content_html = "\n".join(f"<p>{p}</p>" for p in paragraphs)
-    
+
     # Plain text for AI section
     plain_text = "\n\n".join(paragraphs)
-    
+
     # Fill template
     return HTML_TEMPLATE.format(
         title=result.filename.rsplit(".", 1)[0],

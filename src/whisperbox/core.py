@@ -1,11 +1,10 @@
 """Core transcription functionality using faster-whisper."""
 
-import os
 from pathlib import Path
-from typing import Iterator, Literal, Optional
+from typing import Literal, Optional
 
 from rich.console import Console
-from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TimeRemainingColumn
+from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn, TimeRemainingColumn
 
 from whisperbox.models import Segment, TranscriptionResult
 
